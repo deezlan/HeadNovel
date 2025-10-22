@@ -17,4 +17,4 @@ Users can:
 - Responsive design and color contrast optimized for accessibility
 
 ## Full Coursework Report
-For a detailed report including user paths, database schema, design choices, testing, and reflections, see [HeadNovel Coursework Report](report/HeadNovel_Coursework.pdf).
+For a detailed report including user paths, database schema, design choices, testing, and reflections, see [HeadNovel Coursework Report](report/HeadNovel_Coursework_Report.pdf).
