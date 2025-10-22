@@ -1,0 +1,67 @@
+/* Make sure the main content is centered */
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding-top: 15px;
+}
+
+/* Ensures the friends container is fixed to the right side */
+.friends-container {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #f0f4f1;
+    border: 1px solid black;
+    padding: 10px 0 0 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    border-top-left-radius: 20px;
+}
+
+.friends-title {
+    font-size: 20px;
+    margin: 0;
+    padding: 10px 0 0px 10px;
+}
+
+.friends-title-line {
+    border: none;
+    width: 85%;
+    height: 1px;
+    background-color: black;
+    opacity: 10%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+.friends-list-line {
+    border: none;
+    width: 85%;
+    height: 1px;
+    background-color: black;
+    opacity: 10%;
+    margin: 5px 10px 5px 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+.friends-list {
+    padding-left: 20px;
+    padding-top: 10px;
+    list-style: none;
+}
+
+.friend-name {
+    font-weight: 300;
+}
+
+hr::before,
+hr::after {
+    content: none;
+}

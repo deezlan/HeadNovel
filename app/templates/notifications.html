@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+    {% if notifications %}
+        <div class="list-group">
+            {% for notification in notifications %}
+                <div class="list-group-item flex justify-content-between">
+                    <p>{{ notification.message }}</p>
+                    {% if not notification.is_read %}
+                        <form method="POST" action="{{ url_for('mark_notification_as_read', notification_id=notification.id) }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-warning d-inline">Mark as Read</button>
+                        </form>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="greeting">You've read all your notifications!</p>
+    {% endif %}
+{% endblock %}

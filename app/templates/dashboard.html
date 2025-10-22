@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+    <link href="{{ url_for('static', filename='styles/dashboard.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<h1 class="greeting">Welcome, {{ current_user.full_name }}</h1>
+
+<!-- Dashboard Content -->
+<div class="dashboard-container">
+    <div class="posts-container">
+        <!-- Display post content -->
+        {% for post in posts %}
+        <div class="post">
+            <div class="post-header">
+                <span class="post-title">{{ post.title }}</span>
+                <div class="post-name-timestamp">
+                    <span class="post-name"><span class="post-name-text">Posted by </span>{{ post.poster.full_name }}</span>
+                    <span class="post-timestamp">{{ post.timestamp }}</span>
+                </div>
+            </div>
+
+            <hr class="post-lines">
+
+            <div class="post-content">
+                {{ post.desc }}
+            </div>
+
+            <hr class="post-lines">
+
+            <div class="post-footer">
+                <div class="post-stats">
+                    <span><span class="like-count" id="like-count-{{ post.id }}">{{ post_like_counts[post.id] }}</span> Like{% if post_like_counts[post.id] != 1 %}s{% endif %}</span>
+                </div>
+
+                
+                <button class="like-button btn btn-dark" data-post-id="{{ post.id }}" 
+                    {% if post_like_status[post.id] %} 
+                        data-liked="true" 
+                    {% else %}
+                        data-liked="false"
+                    {% endif %}>
+                    {% if post_like_status[post.id] %}Unlike{% else %}Like{% endif %}
+                </button>
+                
+                {% if current_user.id == post.user_id %}
+                    <form class="delete-post" action="{{ url_for('delete_post', post_id=post.id) }}" method="POST" style="display:inline;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this post?')">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+            <h3>No posts availabe.</h3>
+        {% endfor %}
+    </div>
+
+    <div class="friends-container">
+        <h3 class="friends-title">Friends</h3>
+        <ul class="friends-list">
+            <hr class="friends-list-line">
+            {% for friend in friends %}
+                <li class="friend-name">{{ friend.full_name }}</li>
+                <hr class="friends-list-line">
+            {% endfor %}
+        </ul>
+
+        <h3 class="friends-title">Pending</h3>
+        <ul class="friends-list">
+            <hr class="friends-list-line">
+            {% for request in pending_requests %}
+                <li>
+                    {{ request.sender.full_name }} 
+                    <form action="{{ url_for('accept_friend_request', request_id=request.id) }}" method="post" style="display:inline;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </form>
+                    <form action="{{ url_for('decline_friend_request', request_id=request.id) }}" method="post" style="display:inline;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </form>
+                </li>
+                <hr class="friends-list-line">
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

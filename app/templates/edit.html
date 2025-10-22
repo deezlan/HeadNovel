@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+    <link href="{{ url_for('static', filename='styles/forms.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <h2>UPDATE DETAILS</h2>
+    <form method="POST" action="{{ url_for('edit') }}">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.username(class="form-fields", placeholder="Username", readonly=True) }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password(class="form-fields", placeholder="Password") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.full_name(class="form-fields", placeholder="Full Name") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.bio(class="form-fields bio", placeholder="Bio") }}
+        </div>
+
+        <button type="submit" class="btn form-submit">SAVE CHANGES</button>
+    </form>
+{% endblock %}

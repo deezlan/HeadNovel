@@ -1,0 +1,63 @@
+/* Center the profile container horizontally */
+.profile-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 30px;
+    padding-top: 20px;
+}
+
+/* Style for profile details */
+.profile-details {
+    position: relative;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+/* Center the full name */
+.full-name {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Center the bio */
+.bio {
+    text-align: center;
+    color: #6e6e6e;
+    background-color: transparent;
+    border-style: solid;
+    border-color: #c1c1c1;
+    border-radius: 10px;
+    border-width: 2px;
+    padding: 10px 15px;
+    width: 700px;
+    min-width: 500px; 
+    min-height: 80px;
+    margin: 0 auto; 
+}
+
+.username {
+    text-align: left;
+    font-size: 13px; 
+    color: #444444; 
+    position: absolute; 
+    top: 0; 
+    left: 5px; 
+}
+
+form {
+    display: inline;
+}
+
+.btn-profile {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    transform: translateY(-50%);
+    min-width: 100px;
+}

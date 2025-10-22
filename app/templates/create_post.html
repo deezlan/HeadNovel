@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+    <link href="{{ url_for('static', filename='styles/forms.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="content-container">
+        <h2>Share Your Story</h2>
+        <form method="POST" action="{{ url_for('create_post') }}">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                {{ form.title(class="form-fields", placeholder="Title") }}
+            </div>
+    
+            <div class="form-group ">
+                {{ form.desc(class="form-fields description", placeholder="Description") }}
+            </div>
+    
+            <button type="submit" class="btn form-submit">POST</button>
+        </form>
+    </div>
+{% endblock %}

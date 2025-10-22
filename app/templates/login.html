@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+    <link href="{{ url_for('static', filename='styles/forms.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="content-container">
+        <h2>EXISTING USER</h2>
+        <form method="POST" action="{{ url_for('login') }}">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                {{ form.username(class="form-fields", placeholder="Username") }}
+            </div>
+    
+            <div class="form-group">
+                {{ form.password(class="form-fields", placeholder="Password") }}
+            </div>
+    
+            <button type="submit" class="btn form-submit">LOGIN</button>
+        </form>
+    </div>
+{% endblock %}

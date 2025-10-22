@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+<link href="{{ url_for('static', filename='styles/search.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<h2>Search Results</h2>
+<div class="container">
+  <div class="search-bar">
+    <form method="GET" action="{{ url_for('search_users') }}">
+        <input 
+            type="text" 
+            name="query" 
+            class="search-input" 
+            placeholder="Search for users..." 
+            value="{{ query }}">
+        <button type="submit" class="search-button">
+            <i class="fa fa-search"></i>
+        </button>
+    </form>
+</div>
+
+<p>Results for "{{ query }}":</p>
+
+<div class="results">
+  {% if users %}
+      {% for user in users %}
+          <a href="{{ url_for('user_profile', user_id=user.id) }}" class="profile-card-link">
+              <div class="profile-card">
+                  <div class="profile-name">
+                      <b>{{ user.full_name }}</b> (@{{ user.username }})
+                  </div>
+              </div>
+          </a>
+      {% endfor %}
+  {% else %}
+      <p>No users found for "{{ query }}".</p>
+  {% endif %}
+</div>
+
+{% endblock %}
