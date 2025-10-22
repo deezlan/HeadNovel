@@ -1,5 +1,6 @@
 ## Project Overview
-HeadNovel is a **Social Media Web Application** where users can:
+HeadNovel is a **Social Media Web Application** built with Python, Flask, SQLAlchemy, SQLite, JavaScript, and AJAX.
+Users can:
 - Register, log in, and manage profiles
 - Create posts and like posts from friends
 - Send, accept, and remove friend requests
